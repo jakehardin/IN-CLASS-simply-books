@@ -7,7 +7,7 @@ export default function ShowAuthors() {
   const [authors, setAuthors] = useState([]);
   const { user } = useAuth();
 
-  useEffect(() =>{
+  useEffect(() => {
     getAuthors(user.uid).then(setAuthors);
   }, [user.uid]);
   return (
