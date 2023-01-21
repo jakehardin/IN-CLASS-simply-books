@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
@@ -8,6 +9,7 @@ export default function UserProfile() {
   console.warn(user);
   return (
     <div>
+      <Image src={user.photoURL} height="100" width="100" />
       <p>{user.displayName}</p>
       <p>{user.email}</p>
       <p>{user.metadata.lastSignInTime}</p>

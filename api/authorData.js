@@ -71,6 +71,20 @@ const getAuthorBooks = (authorFirebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getFavAuthors = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((response) => response.json())
+    .then((data) => {
+      const isFav = Object.values(data).filter((obj) => obj.favorite);
+      resolve(isFav);
+    })
+    .catch(reject);
+});
+
 export {
   getAuthors,
   createAuthor,
@@ -78,4 +92,5 @@ export {
   deleteSingleAuthor,
   updateAuthor,
   getAuthorBooks,
+  getFavAuthors,
 };
